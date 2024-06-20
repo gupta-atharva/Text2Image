@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Image Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Text to Image Generator</h1>
+        <form method="POST">
+            <label for="prompt">Enter your prompt:</label>
+            <textarea id="prompt" name="prompt" rows="4" cols="50" required></textarea>
+            <button type="submit">Generate Image</button>
+        </form>
+        {% if img_data %}
+        <div class="image-container">
+            <h2>Generated Image:</h2>
+            <img src="data:image/png;base64,{{ img_data }}" alt="Generated Image">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
