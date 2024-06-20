@@ -1,17 +1,17 @@
 from VAE import CLIP
-from VAE import VAE_Encoder
-from VAE import VAE_Decoder
+from VAE import VariationalAutoEncoder
+from VAE import VariationalAutoDecoder
 from VAE import Diffusion
 
-import model_converter
+import model.converter as converter
 
 def preload_models_from_standard_weights(ckpt_path, device):
-    state_dict = model_converter.load_from_standard_weights(ckpt_path, device)
+    state_dict = converter.load_from_standard_weights(ckpt_path, device)
 
-    encoder = VAE_Encoder().to(device)
+    encoder = VariationalAutoEncoder().to(device)
     encoder.load_state_dict(state_dict['encoder'], strict=True)
 
-    decoder = VAE_Decoder().to(device)
+    decoder = VariationalAutoDecoder().to(device)
     decoder.load_state_dict(state_dict['decoder'], strict=True)
 
     diffusion = Diffusion().to(device)

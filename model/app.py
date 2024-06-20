@@ -59,7 +59,7 @@
 
 import streamlit as st
 from PIL import Image
-import model_loader
+import model.load_model as load_model
 import pipeline
 from transformers import CLIPTokenizer
 import torch
@@ -73,7 +73,7 @@ TOKENIZER_MERGES = "../data/tokenizer_merges.txt"
 # Load models and tokenizer
 st.write(f"Using device: {DEVICE}")
 tokenizer = CLIPTokenizer(TOKENIZER_VOCAB, merges_file=TOKENIZER_MERGES)
-models = model_loader.preload_models_from_standard_weights(MODEL_FILE, DEVICE)
+models = load_model.preload_models_from_standard_weights(MODEL_FILE, DEVICE)
 
 # Streamlit interface
 st.title("Text to Image Generator")

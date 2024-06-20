@@ -1,9 +1,9 @@
 import torch
 from torch import nn
 from torch.nn import functional as F
-from attention import SelfAttention, CrossAttention
+from SC_attention import SelfAttention, CrossAttention
 
-class VAE_Encoder(nn.Sequential):
+class VariationalAutoEncoder(nn.Sequential):
     def __init__(self):
         super().__init__(
             nn.Conv2d(3, 128, kernel_size=3, padding=1),
@@ -83,7 +83,7 @@ class VAE_ResidualBlock(nn.Module):
         x = self.conv_2(x)
         return x + self.residual_layer(residue)
 
-class VAE_Decoder(nn.Sequential):
+class VariationalAutoDecoder(nn.Sequential):
     def __init__(self):
         super().__init__(
             nn.Conv2d(4, 4, kernel_size=1, padding=0),
